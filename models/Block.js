@@ -5,6 +5,7 @@ class Block {
     this.timestamp = Date.now();
     this.nonce = 0;
     this.transactions = [];
+    this.targetDifficulty = 1
   }
   addTransaction(tx) {
     this.transactions.push(tx);

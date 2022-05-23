@@ -1,3 +1,4 @@
+const fs = require('fs');
 const {startMining, stopMining} = require('./mine');
 const {PORT} = require('./config');
 const {utxos, blockchain} = require('./db');
@@ -29,6 +30,14 @@ app.post('/', (req, res) => {
       });
       const sum = ourUTXOs.reduce((p,c) => p + c.amount, 0);
       res.send({ balance: sum.toString()});
+  }
+  if (method === "queryBlockchain") {
+    fs.readFile('blockchain.json', (err, data) => {
+      if (err) throw err;
+
+      console.log('data == ', JSON.parse(data));
+ 
+    });  
   }
 });
 
